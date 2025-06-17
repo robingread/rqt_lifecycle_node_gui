@@ -11,19 +11,20 @@ RUN \
   # Install APT dependencies
   apt-get update\
   && apt-get install -y --no-install-recommends \
-  build-essential \
-  ca-certificates \
-  cmake \
-  curl \
-  lcov \
-  python3-pip \
-  software-properties-common \
-  sudo \
-  wget \
+    build-essential \
+    ca-certificates \
+    cmake \
+    curl \
+    lcov \
+    python3-pip \
+    software-properties-common \
+    sudo \
+    wget \
   && rm -rf /var/lib/apt/lists/* \
   # Install Python dependencies
   && pip3 install --break-system-packages \
-  fastcov
+    black \
+    fastcov
 
 # Install the ROS dependencies
 RUN \
@@ -34,19 +35,19 @@ RUN \
   # Install the ROS2 packages and colcon
   && apt-get update \
   && apt-get install -y --no-install-recommends \
-  colcon \
-  python3-colcon-common-extensions \
-  python3-colcon-clean \
-  python3-colcon-cmake \
-  python3-colcon-defaults \
-  python3-colcon-mixin \
-  ros-${ROS_DISTRO}-ament-cmake-catch2 \
-  ros-${ROS_DISTRO}-catch-ros2 \
-  ros-${ROS_DISTRO}-ros-base \
-  ros-${ROS_DISTRO}-rqt \
-  ros-${ROS_DISTRO}-rqt-gui \
-  ros-${ROS_DISTRO}-rqt-common-plugins \
-  ros-${ROS_DISTRO}-rviz2 \
+    colcon \
+    python3-colcon-common-extensions \
+    python3-colcon-clean \
+    python3-colcon-cmake \
+    python3-colcon-defaults \
+    python3-colcon-mixin \
+    ros-${ROS_DISTRO}-ament-cmake-catch2 \
+    ros-${ROS_DISTRO}-catch-ros2 \
+    ros-${ROS_DISTRO}-ros-base \
+    ros-${ROS_DISTRO}-rqt \
+    ros-${ROS_DISTRO}-rqt-gui \
+    ros-${ROS_DISTRO}-rqt-common-plugins \
+    ros-${ROS_DISTRO}-rviz2 \
   && rm -rf /var/lib/apt/lists/*
 
 # Remove display warnings
@@ -86,15 +87,16 @@ RUN \
   # Install dev tools
   apt-get update && \
   apt-get install -y --no-install-recommends \
-  clang-format \
-  gdb \
-  git \
-  less \
-  linux-tools-common \
-  linux-tools-generic \
-  nano \
-  tree && \
-  rm -rf /var/lib/apt/lists/*
+    bash-completion \
+    clang-format \
+    gdb \
+    git \
+    less \
+    linux-tools-common \
+    linux-tools-generic \
+    nano \
+    tree \
+  && rm -rf /var/lib/apt/lists/*
 
 USER ${USERNAME}
 

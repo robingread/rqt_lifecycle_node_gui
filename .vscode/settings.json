@@ -6,10 +6,15 @@
     "problems.autoReveal": true,
     "python.defaultInterpreterPath": "/usr/bin/python3", // Or path to virtualenv/interpreter
     "python.analysis.extraPaths": [
-        "/opt/ros/jazzy/lib/python3.12/site-packages/"
+        "/opt/ros/jazzy/lib/python3.12/site-packages/",
+        "${workspaceFolder}/rqt_lifecycle_node_gui/rqt_lifecycle_node_gui"
     ],
     "python.analysis.autoSearchPaths": true,
     "python.analysis.useLibraryCodeForTypes": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true
+    },
     "todo-tree.highlights.customHighlight": {
         "TODO": {
             "icon": "alert",

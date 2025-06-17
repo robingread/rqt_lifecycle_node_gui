@@ -1,7 +1,7 @@
 services:
   dev:
-    container_name: project-dev
-    image: project:dev
+    container_name: rqt-lifecycle-node-gui-dev
+    image: rqt-lifecycle-node-gui:dev
     build:
       dockerfile: docker/Dockerfile
       context: .

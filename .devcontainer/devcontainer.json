@@ -11,6 +11,7 @@
                 "davidanson.vscode-markdownlint",
                 "github.copilot",
                 "gruntfuggly.todo-tree",
+                "ms-python.black-formatter",
                 "ms-python.python",
                 "ms-vscode.cpptools-extension-pack",
                 "ms-vscode.cmake-tools",
