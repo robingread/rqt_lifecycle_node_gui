@@ -1,0 +1,23 @@
+{
+    "dockerComposeFile": "../docker-compose.yaml",
+    "service": "dev",
+    "workspaceFolder": "/project_ws/",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bierner.markdown-mermaid",
+                "charliermarsh.ruff",
+                "cschlosser.doxdocgen",
+                "davidanson.vscode-markdownlint",
+                "github.copilot",
+                "gruntfuggly.todo-tree",
+                "ms-python.python",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cmake-tools",
+                "njpwerner.autodocstring",
+                "streetsidesoftware.code-spell-checker",
+                "wayou.vscode-todo-highlight"
+            ]
+        }
+    }
+}

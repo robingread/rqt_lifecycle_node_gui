@@ -1,0 +1,31 @@
+{
+    "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+    "editor.formatOnSave": true,
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "problems.autoReveal": true,
+    "python.defaultInterpreterPath": "/usr/bin/python3", // Or path to virtualenv/interpreter
+    "python.analysis.extraPaths": [
+        "/opt/ros/jazzy/lib/python3.12/site-packages/"
+    ],
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "alert",
+            "iconColour": "yellow",
+            "type": "none"
+        },
+        "FIXME": {
+            "icon": "flame",
+            "iconColour": "red",
+            "type": "none"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash"
+        }
+    }
+}

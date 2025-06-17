@@ -1,0 +1,25 @@
+services:
+  dev:
+    container_name: project-dev
+    image: project:dev
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+      target: dev
+      args:
+        - UID=${UID:-1000}
+        - GID=${UID:-1000}
+        - USERNAME=${USERNAME:-devuser}
+    privileged: True # Only needed for local graphical applications
+    environment:
+      - COLCON_DEFAULTS_FILE=/project_ws/colcon-defaults.yaml
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      # Mount the project into the container
+      - ./:/project_ws:rw
+      # Allows graphical programs in the dev container.
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-/dev/null}:/home/${USERNAME}/.Xauthority
+    user: ${USERNAME:-devuser}
+    command: sleep infinity

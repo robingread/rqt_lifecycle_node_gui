@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/src/**",
+                "/opt/ros/jazzy/include/**",
+                "/usr/local/include/**",
+                "/usr/include/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c23",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compileCommands": "/project_ws/build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

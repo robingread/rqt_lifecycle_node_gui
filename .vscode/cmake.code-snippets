@@ -1,0 +1,131 @@
+{
+    "CMake: Add ROS2 Component Library": {
+        "prefix": "CMake: Add ROS2 Component Library",
+        "body": [
+            "# Component library",
+            "add_library(\\${PROJECT_NAME}_component SHARED",
+            "  src/node.cc",
+            ")",
+            "target_include_directories(\\${PROJECT_NAME}_component PUBLIC",
+            "  $<BUILD_INTERFACE:\\${CMAKE_CURRENT_SOURCE_DIR}/include>",
+            "  $<INSTALL_INTERFACE:include>",
+            ")",
+            "ament_target_dependencies(\\${PROJECT_NAME}_component",
+            "  rclcpp",
+            "  rclcpp_components",
+            ")",
+            "target_link_libraries(\\${PROJECT_NAME}_component",
+            "  \\${PROJECT_NAME}",
+            ")",
+            "rclcpp_components_register_node(",
+            "  \\${PROJECT_NAME}_component",
+            "  PLUGIN \"${1:local_planner::LocalPlannerNode}\"",
+            "  EXECUTABLE \\${PROJECT_NAME}_node",
+            ")"
+        ],
+        "description": "Add a component shared library"
+    },
+    "CMake: Add ROS2 Core Library": {
+        "prefix": "CMake: Add ROS2 Core Library",
+        "body": [
+            "# Core library",
+            "add_library(\\${PROJECT_NAME} SHARED",
+            "  src/???.cc",
+            ")",
+            "target_include_directories(\\${PROJECT_NAME} PUBLIC",
+            "  $<BUILD_INTERFACE:\\${CMAKE_CURRENT_SOURCE_DIR}/include>",
+            "  $<INSTALL_INTERFACE:include>",
+            ")",
+            "ament_target_dependencies(\\${PROJECT_NAME}",
+            "  ...",
+            "  rclcpp",
+            ")"
+        ],
+        "description": "Add a core shared library"
+    },
+    "CMake: Install ROS Config Directory": {
+        "prefix": "CMake: Install ROS config directory",
+        "body": [
+            "install(DIRECTORY config",
+            "  DESTINATION share/\\${PROJECT_NAME}",
+            ")"
+        ],
+        "description": "Install the config directory"
+    },
+    "CMake: ROS2 Ament Install Section": {
+        "prefix": "CMake: ROS2 Ament Install section",
+        "body": [
+            "# Install & Export",
+            "install(",
+            "  TARGETS",
+            "    \\${PROJECT_NAME}",
+            "    \\${PROJECT_NAME}_component",
+            "  EXPORT export_\\${PROJECT_NAME}_component",
+            "  ARCHIVE DESTINATION lib",
+            "  LIBRARY DESTINATION lib",
+            "  RUNTIME DESTINATION bin",
+            "  INCLUDES DESTINATION include",
+            ")",
+            "ament_export_include_directories(include)",
+            "ament_export_libraries(\\${PROJECT_NAME})",
+            "ament_export_dependencies(",
+            "  rclcpp",
+            "  rclcpp_components",
+            ")",
+            "ament_export_targets(export_\\${PROJECT_NAME}_component HAS_LIBRARY_TARGET)"
+        ],
+        "description": "Install section"
+    },
+    "CMake: Install Include Directory": {
+        "prefix": "CMake: Install include directory",
+        "body": [
+            "install(DIRECTORY include",
+            "  DESTINATION share/\\${PROJECT_NAME}",
+            ")"
+        ],
+        "description": "Install the include directory"
+    },
+    "CMake: ROS2 GTest CMake Configuration": {
+        "prefix": "CMake: ROS2 GTest CMake Configuration",
+        "body": [
+            "find_package(ament_cmake_gtest REQUIRED)",
+            "find_package(ament_cmake_gmock REQUIRED)",
+            "",
+            "ament_add_gmock(\\${PROJECT_NAME}_test",
+            "    main.cc",
+            ")",
+            "ament_target_dependencies(\\${PROJECT_NAME}_test",
+            "    ament_cmake_gtest",
+            ")",
+            "target_link_libraries(\\${PROJECT_NAME}_test",
+            "    \\${PROJECT_NAME}",
+            ")"
+        ],
+        "description": "Snippet for ROS2 GTest CMake configuration"
+    },
+    "CMake: ROS2 Catch2 CMake Configuration": {
+        "prefix": "CMake: ROS2 Catch2 CMake Configuration",
+        "body": [
+            "find_package(ament_cmake_catch2 REQUIRED)",
+            "find_package(Catch2 REQUIRED)",
+            "",
+            "# Add test executable for the project",
+            "ament_add_catch2(\\${PROJECT_NAME}_test",
+            "    ***.cc",
+            ")",
+            "",
+            "# Link libraries to the test executable",
+            "target_link_libraries(\\${PROJECT_NAME}_test",
+            "    Catch2::Catch2WithMain",
+            "    \\${PROJECT_NAME}",
+            ")",
+            "",
+            "# Specify include directories for the test target",
+            "target_include_directories(\\${PROJECT_NAME}_test PRIVATE",
+            "    $<BUILD_INTERFACE:\\${CMAKE_CURRENT_SOURCE_DIR}/../include>",
+            "    $<INSTALL_INTERFACE:include>",
+            ")"
+        ],
+        "description": "Snippet for ROS2 Catch2 CMake configuration"
+    }
+}
