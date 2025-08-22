@@ -24,7 +24,9 @@ RUN \
   # Install Python dependencies
   && pip3 install --break-system-packages \
     black \
-    fastcov
+    fastcov \
+    pytest \
+    pytest-cov
 
 # Install the ROS dependencies
 RUN \

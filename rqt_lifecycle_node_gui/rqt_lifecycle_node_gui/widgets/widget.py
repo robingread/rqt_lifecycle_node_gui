@@ -1,9 +1,12 @@
+from PyQt5.QtCore import pyqtSignal, pyqtSlot
 from PyQt5.QtWidgets import QVBoxLayout, QWidget
 from . import NodeWidget
-from .utils import StateEnum
+from ..state import StateEnum, TransitionEnum
 
 
 class Widget(QWidget):
+    on_button_press_signal = pyqtSignal(str, TransitionEnum)
+
     def __init__(self) -> None:
         super().__init__()
 
@@ -24,9 +27,20 @@ class Widget(QWidget):
             return False
         self._node_map[node_name] = NodeWidget(name=node_name, state=state, parent=self)
         self._widget_layout.addWidget(self._node_map[node_name])
+        self._node_map[node_name].on_button_press_signal.connect(
+            self._on_node_ui_update
+        )
         return True
 
     def has_node(self, node_name: str) -> bool:
+        """Check whether there is a Widget for a node with a given name.
+
+        Args:
+            node_name (str): Name of the node to check.
+
+        Returns:
+            bool: True if there is a widget registered to the node name, else False.
+        """
         return node_name in self._node_map.keys()
 
     def remove_node(self, node_name: str) -> bool:
@@ -40,6 +54,17 @@ class Widget(QWidget):
         """
         if not self.has_node(node_name=node_name):
             return False
+
         self._layout.removeWidget(self._node_map[node_name])
         del self._node_map[node_name]
         return True
+
+    def set_node_state(self, node_name: str, state: int) -> None:
+        if not self.has_node(node_name=node_name):
+            return
+
+        self._node_map[node_name].set_state(state)
+
+    @pyqtSlot(str, TransitionEnum)
+    def _on_node_ui_update(self, node_name: str, transition: TransitionEnum) -> None:
+        self.on_button_press_signal.emit(node_name, transition)

@@ -7,6 +7,9 @@
   <maintainer email="robin.g.read@gmail.com">robin</maintainer>
   <license>TODO: License declaration</license>
 
+  <test_depend>pytest</test_depend>
+  <test_depend>pytest-cov</test_depend>
+
   <export>
     <build_type>ament_python</build_type>
     <rqt_gui plugin="${prefix}/plugin.xml"/>
